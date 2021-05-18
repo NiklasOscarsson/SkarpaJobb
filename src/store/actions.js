@@ -3,8 +3,9 @@ import axios from 'axios'
 
 export default  {
   login(context, logincreds){
+    console.log(logincreds);
     axios
-    .post('/localhost:3000/login', logincreds)
-    .then(response => (console.log(response)))
-  }
+    .post('http://localhost:3000/login', logincreds)
+    .then(response => (context.commit('login', response.data)))
+  },
 }

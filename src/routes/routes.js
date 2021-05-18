@@ -17,3 +17,5 @@ const router = createRouter({
     {path: '/buisness', component: buisness, name: 'buisness'},
   ]
 })
+
+export default router
