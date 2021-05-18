@@ -2,9 +2,9 @@ import axios from 'axios'
 
 
 export default  {
-  login(context:object, logincreds:String){
+  login(context, logincreds){
     axios
     .post('/localhost:3000/login', logincreds)
-    .then(response => ())
+    .then(response => (console.log(response)))
   }
 }

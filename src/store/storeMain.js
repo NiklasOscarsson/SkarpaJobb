@@ -1,8 +1,8 @@
 import Vuex from 'vuex'
 
-import mutate from './mutations.ts'
-import action from './actions.ts'
-import getter from './getters.ts'
+import mutate from './mutations.js'
+import action from './actions.js'
+import getter from './getters.js'
 
 
 const store = new Vuex.Store({
