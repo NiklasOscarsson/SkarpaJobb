@@ -1,9 +1,15 @@
-const cors = require('cors');
+const User = require('./db.js').User
 
 module.exports = (app) => {
-  app.get('/db/:name', cors(), (req, res)=>{
-    // const name = req.params.name;
-    res.send({name:"bob", role:"admin", active:true, groups:'', rating:5})
+  app.post('/login', (req, res)=>{
+    User.findOne({userName: req.body.userName, password: req.body.password},(err, data)=>{
+      if(data === null){
+        return res.send(false)
+      }
+      else{
+        console.log(data);
+        return res.send(data)
+      }
+    })
   })
-  
 }

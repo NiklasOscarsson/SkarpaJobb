@@ -1,9 +1,9 @@
 import {createRouter, createWebHistory} from 'vue-router'
 
-import home from '../components/pages/home.vue'
-import student from '../components/pages/student.vue'
-import teacher from '../components/pages/teacher.vue'
-import buisness from '../components/pages/buisness.vue'
+import home from '../pages/home.vue'
+import student from '../pages/student.vue'
+import teacher from '../pages/teacher.vue'
+import buisness from '../pages/buisness.vue'
 
 
 

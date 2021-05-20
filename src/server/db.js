@@ -2,12 +2,26 @@ const mon = require("mongoose");
 
 mon.connect('mongodb://localhost:27017/skarpa', {useNewUrlParser:true, useUnifiedTopology:true});
 
-const test = new mon.Schema({
-  Name: String,
+const user = new mon.Schema({
+  userName: String,
+  password: String,
+  role: String,
+  rating: Number,
+  groups: Array,
+  active: Boolean
 });
 
-const test2 = mon.model('testing', test);
+const User = mon.model('users', user);
+
+// User.create({
+//   userName: 'Admin',
+//   password: 'pass',
+//   role: 'Administrator',
+//   rating: 0,
+//   groups: [],
+//   active: true
+// })
 
 module.exports={
-  test2
+  User
 }

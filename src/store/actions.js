@@ -2,10 +2,9 @@ import axios from 'axios'
 
 
 export default  {
-  login(context, logincreds){
-    console.log(logincreds);
+  loginAction(context, logincreds){
     axios
-    .post('http://localhost:3000/login', logincreds)
+    .post('http://localhost:3000/login', {userName:logincreds[0], password: logincreds[1]})
     .then(response => (context.commit('login', response.data)))
   },
 }

@@ -9,14 +9,11 @@ const app = exp();
 app.set('view engine', 'ejs');
 app.use(exp.static('resources'));
 app.use(exp.urlencoded({extended: true}));
+app.use(exp.json())
 app.use(cors());
 
-// const test = require('./server/db.js')
-// require('./server/routes.js')(app);
 
-app.post('/login', (req, res)=>{
-  res.send({name:"bob", role:"admin", active:true, groups:'', rating:5})
-})
+require('./server/routes.js')(app);
 
 app.listen(3000, (err)=>{
   if(err){

@@ -12,8 +12,14 @@ const store = new Vuex.Store({
       lärare: 1,
       företag: 1,
 
-      user:{}
-
+      user:{
+        name:String,
+        role:String,
+        active:Boolean,
+        groups:String,
+        rating:Number
+      },
+      loggedIn: false,
     }
   },
   mutations: mutate,

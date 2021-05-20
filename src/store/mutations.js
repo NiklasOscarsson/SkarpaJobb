@@ -1,5 +1,15 @@
 export default  {
     login(state, payload){
-        console.log(payload);
+        
+        if(payload === false){
+            return false
+        }
+        else{
+            console.log('success');
+            state.user = payload
+            state.loggedIn = true
+            return true
+        }
+        
     }
 }
