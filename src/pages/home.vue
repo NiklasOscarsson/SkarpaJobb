@@ -1,7 +1,7 @@
 <template>
   <div>
-    
-    <login-button :icon="'fas fa-lock'"></login-button>
+    <my-header></my-header>
+
   </div>
 </template>
 

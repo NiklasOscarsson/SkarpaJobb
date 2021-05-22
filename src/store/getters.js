@@ -1,5 +1,5 @@
 export default  {
-  loggedIn(state){
+  loggedInState(state){
     if(state.loggedIn){
       return true
     }else{

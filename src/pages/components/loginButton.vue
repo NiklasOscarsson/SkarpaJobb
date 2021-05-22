@@ -32,15 +32,15 @@
         return this.getUser()
       },
       loggedin(){
-        return this.loggedIn()
+        return this.loggedInState()
       }
     },
     methods:{
       ...mapActions(['loginAction']),
-      ...mapGetters(['loggedIn', 'getUser']),
+      ...mapGetters(['loggedInState', 'getUser']),
       login(loginCredentials){
         this.log=this.loginAction(loginCredentials)
-        this.modalLogin = !this.loggedIn();
+        this.modalLogin = !this.loggedInState();
       },
       modalSwitch(){
         this.modalLogin = !this.modalLogin
