@@ -1,6 +1,6 @@
 <template>
   <div>
-    <i v-if="!loggedin" @click="modalSwitch" :class="icon">{{title}}</i>
+    <i v-if="!loggedin" @click="modalSwitch" :style="styles" :class="icon">{{title}}</i>
     <login v-if="modalLogin && !loggedin" @send="login" @close="modalSwitch"></login>
   </div>
 </template>
@@ -17,7 +17,15 @@
       },
       icon:{
         type: String,
-        required: false,
+        default: 'fas fa-lock',
+      },
+      iconSize:{
+        type: Number,
+        default: 1,
+      },
+      color:{
+        type: String,
+        default: 'black'
       }
     },
     data(){
@@ -25,6 +33,10 @@
         log: false,
         user: {},
         modalLogin:false,
+        styles: {
+          fontSize: this.iconSize+'rem',
+          color: this.color,
+        }
       }
     },
     computed:{

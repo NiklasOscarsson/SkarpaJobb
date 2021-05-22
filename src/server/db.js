@@ -13,14 +13,15 @@ const user = new mon.Schema({
 
 const User = mon.model('users', user);
 
-/* User.create({
+/*  User.create({
   userName: 'Admin',
   password: 'pass',
   role: 'Administrator',
   rating: 0,
   groups: [],
   active: true
-}) */
+}) 
+ */
 
 module.exports={
   User

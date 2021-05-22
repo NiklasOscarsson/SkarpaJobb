@@ -13,7 +13,14 @@ export default {
 </script>
 
 <style>
-  *{
-    margin: 0;
+@import url('https://fonts.googleapis.com/css2?family=Chivo:ital,wght@1,700&display=swap');
+  body{
+    margin:0;
+  }
+  #app{
+    text-align: center;
+    font-family: 'Chivo', sans-serif;
+    color: white;
+    /* font-family: Soleto XBold;  //in Adobe fonts*/
   }
 </style>
