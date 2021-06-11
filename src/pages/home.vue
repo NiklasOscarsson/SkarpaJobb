@@ -7,9 +7,8 @@
       <h3 class="text">read about what we can do for you</h3>
     </div>
     <div id="flex">
-      <div><!-- Buisness -->
-        <h3 id="buisness" class="title circle"  @mouseout.capture="buisness=false" @mouseover="buisness=true">for buisness</h3>
-      </div>
+      <home-button size="250" src="mike-kononovS.jpg" title="for buisness" @click="cool()"><!-- Buisness -->
+      </home-button>
       <div><!-- Teacher -->
         <h3 id="teacher" class="title circle">for teachers</h3>
       </div>
@@ -55,8 +54,8 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 230px;
-  height: 130px;
+  width: 15%;
+  min-height:130px;
   border-radius:100px;
   background-image: linear-gradient(90deg,#ab058b 0,indigo 100%);
   box-shadow: -2px 5px 10px rgba(0, 0, 0, 0.472);
@@ -93,5 +92,6 @@ export default {
   background-image:url("https://www.ntigymnasiet.se/wp-content/uploads/resized/4c/makerspace_webb_3_510x380_563ea2942924804dcd46b29682f419b9.png");
   background-size: cover;
   background-position: center;
+  background-color: black;
 }/* Photo by NTIG */
 </style>

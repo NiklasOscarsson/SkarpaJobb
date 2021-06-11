@@ -30,14 +30,14 @@ export default {
     width: 100vw;
     filter: grayscale(100%);
     position: absolute;
-    z-index: -2;
+    z-index: -200;
   }
   #overlay{
       background-image: linear-gradient(-45deg,#dd0890 0,indigo 100%);
       height: 100vh;
       width: 100vw;
       position: absolute;
-      z-index: -1;
+      z-index: -199;
       opacity: .6;
   }
 </style>
