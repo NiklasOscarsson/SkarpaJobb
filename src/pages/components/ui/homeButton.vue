@@ -1,6 +1,6 @@
 <template>
     <div id="button" :style="cssVars">
-        <div id="back" ></div>
+        <div id="background" ></div>
         <div id="overlay"></div>
         <div id="text">
             <h3>{{title}}</h3>
@@ -13,7 +13,11 @@ export default {
     props:{
         src:{
             type: String,
-            required: true,
+            required: false,
+        },
+        httpSrc:{
+            type:String,
+            required:false,
         },
         title:{
             type: String,
@@ -24,20 +28,26 @@ export default {
             required: true,
         }
     },
-    computed:{
+    data(){
+        return{
+            img: require(`../../../assets/img/${this.src}`),
+            http: this.httpSrc,
+        }
+    },
+    mounted() {
+        if(this.httpSrc){this.img = this.httpSrc}
+    },
+    computed: {
         cssVars(){
             return{
-                '--bg-src': `url("../../../assets/img/${this.src}")`,
-                '--size': `${this.size}px`,
-                '--sizex2': this.size*2+'px',
+                '--bg-src': `url(${this.img})`,
+                '--bg-http':`url(${this.http})`,
+                '--size':`${this.size}px`,
+                '--moveOverlay': this.size*-1+'px',
+                '--moveText': this.size*2*-1+'px',
             }
         }
     },
-    data(){
-        return {
-
-        }
-    }
 }
 </script>
 
@@ -51,15 +61,15 @@ div{
     border-radius: 50%;
     box-shadow:3px 3px 30px black 
 }
-#back{
+#background{
+    background-image: var(--bg-src);
     height:var(--size);
     width:var(--size);
     border-radius:50%;
     overflow: hidden;
-    background-image: url('../../../assets/img/mike-kononovS.jpg');
     background-size: cover;
     background-position: center;
-    filter: grayscale(100%);
+    /* filter: grayscale(100%); */
     z-index: -2;
 }
 #overlay{
@@ -68,16 +78,17 @@ div{
     border-radius:50%;
     background-image: linear-gradient(90deg,#dd0890 0,indigo 100%);
     z-index: -1;
-    opacity: .4;
-    transform:translateY(var(--size));
+    opacity: .6;
+    transform:translateY(var(--moveOverlay));
 }
 #text{
     display:flex;
     justify-content:center;
     align-items:center;
     cursor:pointer;
-    transform:translateY(var(--sizex2));
+    transform:translateY(var(--moveText));
     height:var(--size);
     width:var(--size);
+    font-size: 1.7em;
 }
 </style>
