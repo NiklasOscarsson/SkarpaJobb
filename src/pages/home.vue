@@ -10,13 +10,13 @@
       </div>  
     </div>
     <div id="flex">
-      <home-button :size='250' src="mike-kononovS.jpg" title="for buisness" @click="cool()"><!-- Buisness -->
+      <home-button :buttonSize='buttonSize' :textSize='textSize' src="mike-kononovS.jpg" title="for buisness" @click="cool()"><!-- Buisness -->
       <!-- picture by Mike Kononov on unsplash.com-->
       </home-button>
-      <home-button :size='250' src="science.jpg"  title="for teachers" @click="cool()"><!-- Buisness -->
+      <home-button :buttonSize='buttonSize' :textSize='textSize' src="science.jpg"  title="for teachers" @click="cool()"><!-- Buisness -->
       <!-- picture by sienceHD on unsplash.com-->
       </home-button>
-      <home-button :size='250' src="sirisvisualS.jpg" httpSrc="https://www.ntigymnasiet.se/wp-content/uploads/resized/4c/makerspace_webb_3_510x380_563ea2942924804dcd46b29682f419b9.png" title="for students" @click="cool()"><!-- Buisness -->
+      <home-button :buttonSize='buttonSize' :textSize='textSize' src="sirisvisualS.jpg" httpSrc="https://www.ntigymnasiet.se/wp-content/uploads/resized/4c/makerspace_webb_3_510x380_563ea2942924804dcd46b29682f419b9.png" title="for students" @click="cool()"><!-- Buisness -->
       <!-- picture by Sirisvisual on unsplash.com-->
       </home-button>
     </div>
@@ -30,7 +30,9 @@ export default {
 
   data(){
     return {
-      buisness: false
+      buisness: false,
+      buttonSize: 250,
+      textSize: '1.7em'
     }
   },
   methods:{
@@ -62,7 +64,8 @@ export default {
   min-height:200px;
   border-radius:100px;
   background-image: linear-gradient(90deg,#ab058b 0,indigo 100%);
-  box-shadow: -2px 5px 10px rgba(0, 0, 0, 0.472);
+  box-shadow: -2px 5px 10px rgba(0, 0, 0, 0.5);
+  user-select: none;
 }
 #flex{
   display: flex;
@@ -82,5 +85,10 @@ export default {
 .text{
   cursor: default;
   margin: 3%;
+  user-select: none;
+}
+.circleLogin:active{
+  transform: translateX(-3px) translateY(3px);
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
 }
 </style>

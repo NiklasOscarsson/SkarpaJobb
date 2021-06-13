@@ -23,8 +23,12 @@ export default {
             type: String,
             required: true,
         },
-        size:{
+        buttonSize:{
             type: Number,
+            required: true,
+        },
+        textSize:{
+            type: String,
             required: true,
         }
     },
@@ -41,10 +45,10 @@ export default {
         cssVars(){
             return{
                 '--bg-src': `url(${this.img})`,
-                '--bg-http':`url(${this.http})`,
-                '--size':`${this.size}px`,
-                '--moveOverlay': this.size*-1+'px',
-                '--moveText': this.size*2*-1+'px',
+                '--textSize': this.textSize,
+                '--size':`${this.buttonSize}px`,
+                '--moveOverlay': this.buttonSize*-1+'px',
+                '--moveText': this.buttonSize*2*-1+'px',
             }
         }
     },
@@ -59,7 +63,7 @@ div{
     height: var(--size);
     width: var(--size);
     border-radius: 50%;
-    box-shadow:3px 3px 30px black 
+    box-shadow:-2px 5px 10px rgba(0, 0, 0, 0.5) 
 }
 #background{
     background-image: var(--bg-src);
@@ -89,6 +93,11 @@ div{
     transform:translateY(var(--moveText));
     height:var(--size);
     width:var(--size);
-    font-size: 1.7em;
+    font-size: var(--textSize);
+    user-select: none;
+}
+#button:active{
+  transform: translateX(-3px) translateY(3px);
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
 }
 </style>
