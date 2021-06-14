@@ -3,7 +3,8 @@
   <my-background src='https://www.ntigymnasiet.se/wp-content/uploads/2019/12/iStock-846657038.jpg'></my-background>
   <div id="window">
     <div id="first">
-      <h3 class="title circleLogin">Login to account</h3>
+      <login v-if="login" @close="login=false"></login>
+      <h3 class="title circleLogin" @click="login=true">Login to account</h3>
       <div class="text">
         <h3>or</h3>
         <h3 >read about what we can do for you</h3>
@@ -30,14 +31,14 @@ export default {
 
   data(){
     return {
-      buisness: false,
+      login: false,
       buttonSize: 250,
       textSize: '1.7em'
     }
   },
   methods:{
     cool(){
-      console.log(this.buisness);
+
     }
   }
 }

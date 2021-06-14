@@ -1,0 +1,15 @@
+services:
+
+    db:
+        image: postgres
+        restart: always
+        environment:
+            POSTGRESS_PASS: bob
+            POSTGRESS_DB: realJobs
+
+    adminer:
+        image: adminer
+        restart: always
+        ports:
+            - 3500:3500
+    

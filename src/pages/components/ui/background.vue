@@ -47,6 +47,6 @@ export default {
     width: 100vw;
     position: absolute;
     z-index: -198;
-    opacity: .4;
+    opacity: .45;
   }
 </style>

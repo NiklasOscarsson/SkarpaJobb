@@ -12,6 +12,7 @@
 <script>
 
 import modal from './ui/modal.vue'
+import {mapActions} from 'vuex'
 export default {
   components: {modal},
   data(){
@@ -21,8 +22,9 @@ export default {
     }
   },
   methods:{
+    ...mapActions(['loginAction']),
     send(){
-      this.$emit('send', [this.userName, this.password])
+      this.loginAction([this.userName, this.password])
     },
   }
 }
@@ -31,6 +33,7 @@ export default {
 <style scoped>
 .title{
   margin: 10% 0 15% 0;
+  color:black;
 }
 .input{
   display: block;
