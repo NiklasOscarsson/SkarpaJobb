@@ -18,7 +18,6 @@ export default {
     margin:0;
   }
   #app{
-    text-align: center;
     font-family: 'Chivo', sans-serif;
     color: white;
     /* font-family: Soleto XBold;  //in Adobe fonts*/

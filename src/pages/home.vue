@@ -14,13 +14,13 @@
       </div>  
     </div>
     <div id="flex">
-      <router-link to="/buisness" ><home-button :buttonSize='buttonSize' :textSize='textSize' href="buisness" src="mike-kononovS.jpg" title="for buisness" @click="cool()"><!-- Buisness -->
+      <router-link class="round" to="/buisness" ><home-button :buttonSize='buttonSize' :textSize='textSize' href="buisness" src="mike-kononovS.jpg" title="for buisness" @click="cool()"><!-- Buisness -->
       <!-- picture by Mike Kononov on unsplash.com-->
       </home-button></router-link>
-      <router-link to="/teacher" ><home-button :buttonSize='buttonSize' :textSize='textSize' src="science.jpg" href="teacher"  title="for teachers" @click="cool()"><!-- Buisness -->
+      <router-link class="round" to="/teacher" ><home-button :buttonSize='buttonSize' :textSize='textSize' src="science.jpg" href="teacher"  title="for teachers" @click="cool()"><!-- Buisness -->
       <!-- picture by sienceHD on unsplash.com-->
       </home-button></router-link>
-      <router-link to="/student" ><home-button :buttonSize='buttonSize' :textSize='textSize' src="sirisvisualS.jpg" href="student" httpSrc="https://www.ntigymnasiet.se/wp-content/uploads/resized/4c/makerspace_webb_3_510x380_563ea2942924804dcd46b29682f419b9.png" title="for students" @click="cool()"><!-- Buisness -->
+      <router-link class="round" to="/student" ><home-button :buttonSize='buttonSize' :textSize='textSize' src="sirisvisualS.jpg" href="student" httpSrc="https://www.ntigymnasiet.se/wp-content/uploads/resized/4c/makerspace_webb_3_510x380_563ea2942924804dcd46b29682f419b9.png" title="for students" @click="cool()"><!-- Buisness -->
       <!-- picture by Sirisvisual on unsplash.com-->
       </home-button></router-link>
     </div>
@@ -85,9 +85,13 @@ export default {
   cursor: default;
   margin: 3%;
   user-select: none;
+  text-align: center;
 }
 .circleLogin:active{
   transform: translateX(-3px) translateY(3px);
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
+}
+.round{
+  border-radius: 50%;
 }
 </style>

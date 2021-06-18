@@ -1,20 +1,18 @@
 <template>
-  <div class="round outer" :style="cssVars">
-    <div id="button" class="round inner">
+  <div ref="button" id="button" class="outer round" :style="cssVars">
+    <div class="inner">
       <div class="round front">
-        <div id="background" class="round front"></div>
-        <!-- <div id="overlay" class="round"></div>
-        <div id="text" class="round">
+        <div id="background" class="front size"></div>
+        <div id="overlay" class="size"></div>
+        <div id="text" class="size">
           <h3>{{ text }}</h3>
-        </div> -->
-      </div>
-      <div class="back round">
-        <div class="round back overflow">
-          <h1 class="back">bob</h1>
-          <router-view class="frame back"></router-view>
         </div>
       </div>
+      <div class="back">
+        <router-view class="frame"></router-view>
+      </div>
     </div>
+
   </div>
 </template>
 
@@ -52,6 +50,8 @@ export default {
       img: require(`../../../assets/img/${this.src}`),
       http: this.httpSrc,
       link: "",
+      top:0,
+      left:0,
     };
   },
   mounted() {
@@ -59,6 +59,10 @@ export default {
       this.img = this.httpSrc;
     }
     this.link = this.href;
+    this.left = this.$refs.button.getBoundingClientRect().left
+    this.top = this.$refs.button.getBoundingClientRect().top
+    console.log(this.top * -1);
+    console.log(this.left * -1);
   },
   computed: {
     cssVars() {
@@ -66,44 +70,35 @@ export default {
         "--bg-src": `url(${this.img})`,
         "--textSize": this.textSize,
         "--size": `${this.buttonSize}px`,
-        "--moveOverlay": this.buttonSize * -1 + "px",
-        "--moveText": this.buttonSize * 2 * -1 + "px",
+        // "--moveOverlay": this.buttonSize * -1 + "px",
+        "--moveText": this.buttonSize * -1 + "px",
+        "--moveLinkTop": this.top * -1 + "px",
+        "--moveLinkLeft": this.left * -1 + "px",
       };
     },
   },
   methods: {
-    Flipp() {
-      this.text = "bob";
-    },
-    Flopp() {
-      this.text = this.title;
-    },
+
   },
 };
 </script>
 
 <style scoped>
-* {
-  height: 100%;
-  backface-visibility: hidden;
-}
-#button {
-  box-shadow: -2px 5px 10px rgba(0, 0, 0, 0.5);
-}
 #background {
   background-image: var(--bg-src);
-  overflow: hidden;
   background-size: cover;
   background-position: center;
   z-index: -2;
 }
-/* #overlay {
+ #overlay {
   background-image: linear-gradient(90deg, #dd0890 0, indigo 100%);
   z-index: -1;
   opacity: 0.6;
-  transform: translateY(var(--moveOverlay));
-}
+  border-radius: 50%;
+  /* transform: translateY(var(--moveOverlay)); */
+} 
 #text {
+  border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -113,56 +108,64 @@ export default {
   user-select: none;
   color: white;
 }
+.size{
+  height: 100%;
+}
+#button{
+  transition: .2s;
+}
 #button:active {
-  transition: 0.2s;
-  transform: translateX(-3px) translateY(3px) rotateY(180deg);
+  transform: translateX(-3px) translateY(3px);
+} 
+#button:active .back, #button:active .front{
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
-} */
-.round {
-  border-radius: 50%;
-  height: var(--size);
-  width: var(--size);
-  overflow: hidden;
+}
+.frame{
+  position: absolute;
+  top:var(--moveLinkTop);
+  left:var(--moveLinkLeft);
 }
 
 
-/* ROTATION */
-/* .overflow{
-  background-color: blanchedalmond;
-} */
-/* .frame {
-  position: relative;
-  top:0;
-  left:0;
-  height: 100vh;
-  width: 100vw;
-} */
+
 
 .outer {
+  border-radius: 50%;
   background-color: transparent;
+  height: var(--size);
+  width: var(--size);
   perspective: 1000px;
 }
 .inner {
-  transition: 0.8s;
+  border-radius: 50%;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
   transform-style: preserve-3d;
+
+}
+.front {
+  color: black;
+}
+.back {
+  background-color: #2980b9;
+  color: white;
+  transform: rotateY(180deg);
+  overflow: hidden;
 }
 .outer:hover .inner {
   transform: rotateY(180deg);
 }
 .front,
 .back {
+  border-radius: 50%;
   position: absolute;
   width: 100%;
   height: 100%;
-  -webkit-backface-visibility: hidden; /* Safari */
+  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-}
-.back {
-  transform: rotateY(180deg);
-  background-color: coral;
-}
-h1{
-  color:chartreuse;
-  font-size: 2em;
+  box-shadow: -2px 5px 10px rgba(0, 0, 0, 0.5);
+  transition: box-shadow .2s;
 }
 </style>
