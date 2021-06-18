@@ -12,11 +12,13 @@ const router = createRouter({
   history: createWebHistory(),
   routes: [
     {path: '/', redirect:'/home'},
-    {path: '/home', component: home, name: 'home'},
+    {path: '/home', component: home, name: 'home', children:[
+      {path: '/home', component: buisness, name: 'buisness'},
+    ]},
     {path: '/profile', component: profile, name: 'profile'},
     {path: '/student', component: student, name: 'student'},
     {path: '/teacher', component: teacher, name: 'teacher'},
-    {path: '/buisness', component: buisness, name: 'buisness'},
+    {path: '/buisness', component: buisness, name: 'buisness2'},
   ]
 })
 

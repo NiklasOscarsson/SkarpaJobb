@@ -1,103 +1,168 @@
 <template>
-    <div id="button" :style="cssVars">
-        <div id="background" ></div>
-        <div id="overlay"></div>
-        <div id="text">
-            <h3>{{title}}</h3>
+  <div class="round outer" :style="cssVars">
+    <div id="button" class="round inner">
+      <div class="round front">
+        <div id="background" class="round front"></div>
+        <!-- <div id="overlay" class="round"></div>
+        <div id="text" class="round">
+          <h3>{{ text }}</h3>
+        </div> -->
+      </div>
+      <div class="back round">
+        <div class="round back overflow">
+          <h1 class="back">bob</h1>
+          <router-view class="frame back"></router-view>
         </div>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
 export default {
-    props:{
-        src:{
-            type: String,
-            required: false,
-        },
-        httpSrc:{
-            type:String,
-            required:false,
-        },
-        title:{
-            type: String,
-            required: true,
-        },
-        buttonSize:{
-            type: Number,
-            required: true,
-        },
-        textSize:{
-            type: String,
-            required: true,
-        }
+  props: {
+    src: {
+      type: String,
+      required: false,
     },
-    data(){
-        return{
-            img: require(`../../../assets/img/${this.src}`),
-            http: this.httpSrc,
-        }
+    httpSrc: {
+      type: String,
+      required: false,
     },
-    mounted() {
-        if(this.httpSrc){this.img = this.httpSrc}
+    title: {
+      type: String,
+      required: true,
     },
-    computed: {
-        cssVars(){
-            return{
-                '--bg-src': `url(${this.img})`,
-                '--textSize': this.textSize,
-                '--size':`${this.buttonSize}px`,
-                '--moveOverlay': this.buttonSize*-1+'px',
-                '--moveText': this.buttonSize*2*-1+'px',
-            }
-        }
+    buttonSize: {
+      type: Number,
+      required: true,
     },
-}
+    textSize: {
+      type: String,
+      required: true,
+    },
+    href: {
+      type: String,
+      required: true,
+    },
+  },
+  data() {
+    return {
+      text: this.title,
+      img: require(`../../../assets/img/${this.src}`),
+      http: this.httpSrc,
+      link: "",
+    };
+  },
+  mounted() {
+    if (this.httpSrc) {
+      this.img = this.httpSrc;
+    }
+    this.link = this.href;
+  },
+  computed: {
+    cssVars() {
+      return {
+        "--bg-src": `url(${this.img})`,
+        "--textSize": this.textSize,
+        "--size": `${this.buttonSize}px`,
+        "--moveOverlay": this.buttonSize * -1 + "px",
+        "--moveText": this.buttonSize * 2 * -1 + "px",
+      };
+    },
+  },
+  methods: {
+    Flipp() {
+      this.text = "bob";
+    },
+    Flopp() {
+      this.text = this.title;
+    },
+  },
+};
 </script>
 
 <style scoped>
-div{
-    height: 100%
+* {
+  height: 100%;
+  backface-visibility: hidden;
 }
-#button{
-    height: var(--size);
-    width: var(--size);
-    border-radius: 50%;
-    box-shadow:-2px 5px 10px rgba(0, 0, 0, 0.5) 
+#button {
+  box-shadow: -2px 5px 10px rgba(0, 0, 0, 0.5);
 }
-#background{
-    background-image: var(--bg-src);
-    height:var(--size);
-    width:var(--size);
-    border-radius:50%;
-    overflow: hidden;
-    background-size: cover;
-    background-position: center;
-    /* filter: grayscale(100%); */
-    z-index: -2;
+#background {
+  background-image: var(--bg-src);
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  z-index: -2;
 }
-#overlay{
-    height:var(--size);
-    width:var(--size);
-    border-radius:50%;
-    background-image: linear-gradient(90deg,#dd0890 0,indigo 100%);
-    z-index: -1;
-    opacity: .6;
-    transform:translateY(var(--moveOverlay));
+/* #overlay {
+  background-image: linear-gradient(90deg, #dd0890 0, indigo 100%);
+  z-index: -1;
+  opacity: 0.6;
+  transform: translateY(var(--moveOverlay));
 }
-#text{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    cursor:pointer;
-    transform:translateY(var(--moveText));
-    height:var(--size);
-    width:var(--size);
-    font-size: var(--textSize);
-    user-select: none;
+#text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transform: translateY(var(--moveText));
+  font-size: var(--textSize);
+  user-select: none;
+  color: white;
 }
-#button:active{
-  transform: translateX(-3px) translateY(3px);
+#button:active {
+  transition: 0.2s;
+  transform: translateX(-3px) translateY(3px) rotateY(180deg);
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
+} */
+.round {
+  border-radius: 50%;
+  height: var(--size);
+  width: var(--size);
+  overflow: hidden;
+}
+
+
+/* ROTATION */
+/* .overflow{
+  background-color: blanchedalmond;
+} */
+/* .frame {
+  position: relative;
+  top:0;
+  left:0;
+  height: 100vh;
+  width: 100vw;
+} */
+
+.outer {
+  background-color: transparent;
+  perspective: 1000px;
+}
+.inner {
+  transition: 0.8s;
+  transform-style: preserve-3d;
+}
+.outer:hover .inner {
+  transform: rotateY(180deg);
+}
+.front,
+.back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
+.back {
+  transform: rotateY(180deg);
+  background-color: coral;
+}
+h1{
+  color:chartreuse;
+  font-size: 2em;
 }
 </style>

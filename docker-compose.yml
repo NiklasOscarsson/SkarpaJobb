@@ -1,15 +1,19 @@
 services:
 
-    db:
-        image: postgres
-        restart: always
-        environment:
-            POSTGRESS_PASS: bob
-            POSTGRESS_DB: realJobs
-
     adminer:
         image: adminer
         restart: always
         ports:
-            - 3500:3500
+            - 3500:8080
+
+    db:
+        image: postgres
+        restart: always
+        environment:
+            POSTGRES_USER: bob
+            POSTGRES_PASSWORD: bob
+            POSTGRES_DB: jobs
+            POSTGRES_HOST_AUTH_METHOD: trust
+
+    
     
