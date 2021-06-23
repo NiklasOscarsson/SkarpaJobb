@@ -34,7 +34,7 @@ export default {
   },
   data() {
     return {
-      img: require(`../../../assets/img/${this.src}`),
+      img: require(`../../../../assets/img/${this.src}`),
       http: this.httpSrc,
     };
   },

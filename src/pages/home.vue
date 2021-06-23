@@ -14,15 +14,15 @@
       </div>  
     </div>
     <div id="flex">
-      <router-link class="round" to="/buisness" ><home-button :buttonSize='buttonSize' :textSize='textSize' href="buisness" src="mike-kononovS.jpg" title="for buisness" @click="cool()"><!-- Buisness -->
+      <router-link class="round" to="/buisness" ><home-button-fade :buttonSize='buttonSize' :textSize='textSize' href="buisness" src="mike-kononovS.jpg" title="for buisness" @click="cool()"><!-- Buisness -->
       <!-- picture by Mike Kononov on unsplash.com-->
-      </home-button></router-link>
-      <router-link class="round" to="/teacher" ><home-button :buttonSize='buttonSize' :textSize='textSize' src="science.jpg" href="teacher"  title="for teachers" @click="cool()"><!-- Buisness -->
+      </home-button-fade></router-link>
+      <router-link class="round" to="/teacher" ><home-button-flipp-x :buttonSize='buttonSize' :textSize='textSize' src="science.jpg" href="teacher"  title="for teachers" @click="cool()"><!-- Buisness -->
       <!-- picture by sienceHD on unsplash.com-->
-      </home-button></router-link>
-      <router-link class="round" to="/student" ><home-button :buttonSize='buttonSize' :textSize='textSize' src="sirisvisualS.jpg" href="student" httpSrc="https://www.ntigymnasiet.se/wp-content/uploads/resized/4c/makerspace_webb_3_510x380_563ea2942924804dcd46b29682f419b9.png" title="for students" @click="cool()"><!-- Buisness -->
+      </home-button-flipp-x></router-link>
+      <router-link class="round" to="/student" ><home-button-flipp-y :buttonSize='buttonSize' :textSize='textSize' src="sirisvisualS.jpg" href="student" httpSrc="https://www.ntigymnasiet.se/wp-content/uploads/resized/4c/makerspace_webb_3_510x380_563ea2942924804dcd46b29682f419b9.png" title="for students" @click="cool()"><!-- Buisness -->
       <!-- picture by Sirisvisual on unsplash.com-->
-      </home-button></router-link>
+      </home-button-flipp-y></router-link>
     </div>
   </div>
   <!-- Bakgrund med 4 val loga in, företag, lärare och student -->
@@ -30,7 +30,7 @@
 </template>
 
 <script>
-  import loginButton from './components/ui/LoginButton.vue'
+  import loginButton from './components/ui/homeButtons/LoginButton.vue'
 export default {
   components:{loginButton},
   data(){
@@ -93,5 +93,6 @@ export default {
 }
 .round{
   border-radius: 50%;
+  text-decoration: none;
 }
 </style>

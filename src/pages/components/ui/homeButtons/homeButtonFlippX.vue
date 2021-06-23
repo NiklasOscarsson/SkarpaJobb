@@ -47,7 +47,7 @@ export default {
   data() {
     return {
       text: this.title,
-      img: require(`../../../assets/img/${this.src}`),
+      img: require(`../../../../assets/img/${this.src}`),
       http: this.httpSrc,
       link: "",
       top:0,
@@ -59,10 +59,8 @@ export default {
       this.img = this.httpSrc;
     }
     this.link = this.href;
-    this.left = this.$refs.button.getBoundingClientRect().left
     this.top = this.$refs.button.getBoundingClientRect().top
-    console.log(this.top * -1);
-    console.log(this.left * -1);
+    this.check()
   },
   computed: {
     cssVars() {
@@ -78,7 +76,12 @@ export default {
     },
   },
   methods: {
-
+    check(){
+      setTimeout(()=>{
+        this.left = this.$refs.button.getBoundingClientRect().left
+        console.log(this.left);
+      }, 1);
+    },
   },
 };
 </script>
@@ -126,9 +129,6 @@ export default {
   left:var(--moveLinkLeft);
 }
 
-
-
-
 .outer {
   border-radius: 50%;
   background-color: transparent;
@@ -151,11 +151,11 @@ export default {
 .back {
   background-color: #2980b9;
   color: white;
-  transform: rotateY(180deg);
+  transform: rotateX(180deg);
   overflow: hidden;
 }
 .outer:hover .inner {
-  transform: rotateY(180deg);
+  transform: rotateX(180deg);
 }
 .front,
 .back {
