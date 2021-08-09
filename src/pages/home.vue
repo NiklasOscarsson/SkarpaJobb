@@ -1,28 +1,65 @@
 <template>
-<div>
-  <my-background src='https://www.ntigymnasiet.se/wp-content/uploads/2019/12/iStock-846657038.jpg'></my-background>
-  <div id="window">
-    <div id="first">
-      <login v-if="login" @close="login=false"></login>
-      <div class="flex">
-        <login-button  title='Login to account' src="NTI-logga.png" :textSize='textSize' :buttonSize="200" @click="login=true"></login-button>
+<div class="">
+  <div>
+    <my-background src='https://www.ntigymnasiet.se/wp-content/uploads/2019/12/iStock-846657038.jpg'></my-background>
+    <div>
+      <div id="first">
+        <login v-if="login" @close="login=false"></login>
+        <div class="flex">
+          <login-button  
+            title='Login to account' 
+            src="NTI-logga.png" 
+            :textSize='textSize' 
+            :buttonSize="200" 
+            @click="login=true">
+          </login-button>
+        </div>
+
+        <div class="text">
+          <h3>or</h3>
+          <h3 >read about what we can do for you</h3>
+        </div>  
       </div>
-  <!-- <h3 class="title circleLogin" @click="login=true">Login to account</h3> -->
-      <div class="text">
-        <h3>or</h3>
-        <h3 >read about what we can do for you</h3>
-      </div>  
-    </div>
-    <div id="flex">
-      <router-link class="round" to="/buisness" ><home-button-fade :buttonSize='buttonSize' :textSize='textSize' href="buisness" src="mike-kononovS.jpg" title="for buisness" @click="cool()"><!-- Buisness -->
-      <!-- picture by Mike Kononov on unsplash.com-->
-      </home-button-fade></router-link>
-      <router-link class="round" to="/teacher" ><home-button-flipp-x :buttonSize='buttonSize' :textSize='textSize' src="science.jpg" href="teacher"  title="for teachers" @click="cool()"><!-- Buisness -->
-      <!-- picture by sienceHD on unsplash.com-->
-      </home-button-flipp-x></router-link>
-      <router-link class="round" to="/student" ><home-button-flipp-y :buttonSize='buttonSize' :textSize='textSize' src="sirisvisualS.jpg" href="student" httpSrc="https://www.ntigymnasiet.se/wp-content/uploads/resized/4c/makerspace_webb_3_510x380_563ea2942924804dcd46b29682f419b9.png" title="for students" @click="cool()"><!-- Buisness -->
-      <!-- picture by Sirisvisual on unsplash.com-->
-      </home-button-flipp-y></router-link>
+
+      <div id="flex">
+        <!-- Buisness -->
+        <router-link class="round" to="/buisness" >
+          <home-button-fade 
+            :buttonSize='buttonSize' 
+            :textSize='textSize' 
+            hreff="buisness" 
+            src="mike-kononovS.jpg" 
+            title="for buisness">
+            <!-- picture by Mike Kononov on unsplash.com-->
+          </home-button-fade>
+        </router-link>
+
+        <!-- Teacher -->
+        <router-link class="round" to="/teacher" >
+          <home-button-flipp-x 
+            :buttonSize='buttonSize' 
+            :textSize='textSize' 
+            src="science.jpg" 
+            hreff="teacher"  
+            title="for teachers" 
+            >
+            <!-- picture by sienceHD on unsplash.com-->
+          </home-button-flipp-x>
+        </router-link>
+        <!-- Student -->
+        <router-link class="round" to="/student" >
+          <home-button-flipp-y 
+            :buttonSize='buttonSize' 
+            :textSize='textSize' 
+            src="sirisvisualS.jpg" 
+            hreff="student" 
+            httpSrc="https://www.ntigymnasiet.se/wp-content/uploads/resized/4c/makerspace_webb_3_510x380_563ea2942924804dcd46b29682f419b9.png" 
+            title="for students">
+            <!-- picture by Sirisvisual on unsplash.com-->
+          </home-button-flipp-y>
+        </router-link>
+
+      </div>
     </div>
   </div>
   <!-- Bakgrund med 4 val loga in, företag, lärare och student -->
@@ -31,8 +68,9 @@
 
 <script>
   import loginButton from './components/ui/homeButtons/LoginButton.vue'
+  import login from './components/login.vue'
 export default {
-  components:{loginButton},
+  components:{loginButton, login},
   data(){
     return {
       login: false,
@@ -40,19 +78,11 @@ export default {
       textSize: '1.7em'
     }
   },
-  methods:{
-    cool(){
-
-    }
-  }
 }
 </script>
 
 <style scoped>
-#window{
-  width: 100vw;
-  height: 100vh;
-}
+
 .title{
   margin: 0;
 }
@@ -86,10 +116,6 @@ export default {
   margin: 3%;
   user-select: none;
   text-align: center;
-}
-.circleLogin:active{
-  transform: translateX(-3px) translateY(3px);
-  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
 }
 .round{
   border-radius: 50%;

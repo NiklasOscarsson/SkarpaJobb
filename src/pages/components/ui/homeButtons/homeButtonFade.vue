@@ -1,16 +1,17 @@
 <template>
-  <div id="shell" :style="cssVars" ref="button">
+
+  <div id="shell" :style="cssVars" ref="button" @mouseover="bob">
+    
     <div
       :style="cssVars"
-      id=""
-      class="outer size button"
+      :class="['outer', 'size', 'button']"
       @mouseover="$emit(text)"
-      @click="stop($event)"
     >
       <div id="background"></div>
       <div id="overlay"></div>
       <div id="fade"  >
-        <router-view class="frame" ></router-view>
+        <page class="frame">
+        </page>
       </div>
       <div id="text" class="round">
         <h3 class="text">{{ text }}</h3>
@@ -20,7 +21,9 @@
 </template>
 
 <script>
+import page from '../../../buisness.vue'
 export default {
+  components:{page},
   props: {
     src: {
       type: String,
@@ -42,7 +45,7 @@ export default {
       type: String,
       required: true,
     },
-    href: {
+    hreff: {
       type: String,
       required: true,
     },
@@ -57,18 +60,13 @@ export default {
       top: 0,
       left: 0,
       buttonSizeY: this.buttonSize,
-      buttonsizeX: this.buttonSize,
+      buttonSizeX: this.buttonSize,
     };
   },
   methods: {
-    stop(event) {
-      // event.preventDefault();
-      console.log(event.target);
-    },
     check(){
       setTimeout(()=>{
         this.left = this.$refs.button.getBoundingClientRect().left
-        console.log(this.left);
       }, 1);
     },
   },
@@ -91,7 +89,7 @@ export default {
     if (this.httpSrc) {
       this.img = this.httpSrc;
     }
-    this.link = this.href;
+    this.link = this.hreff;
     this.top = this.$refs.button.getBoundingClientRect().top;
     this.buttonSizeY = this.buttonSize;
     this.buttonSizeX = this.buttonSize;
@@ -167,15 +165,6 @@ div {
   border-radius: 50%;
   overflow: hidden;
 }
-/* .active {
-  overflow: visible;
-  opacity: 1;
-  height: 100vh;
-  width: 100vw;
-  position: absolute;
-  top: var(--moveLinkTop);
-  left: var(--moveLinkLeft);
-} */
 .frame {
   position: absolute;
   pointer-events: none;

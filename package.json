@@ -3,8 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "dock": "sudo docker-compose up -d",
+    "bg-kill": "sudo docker-compose down",
+    "server": "sudo nodemon ./src/server/Server.js ",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "bg": "npm run dock && npm run server",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
@@ -14,10 +18,13 @@
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "cors": "^2.8.5",
+    "dotenv": "^8.6.0",
     "ejs": "^2.7.4",
     "express": "^4.17.1",
     "method-override": "^3.0.0",
     "mongoose": "^5.12.8",
+    "nodemon": "^2.0.12",
+    "pg": "^8.7.1",
     "s": "^1.0.0",
     "vue": "^3.0.0",
     "vue-router": "^4.0.6",

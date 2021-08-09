@@ -24,7 +24,7 @@
   border-radius: 30px;
   box-shadow: 3px 3px 10px 0px black;
   width: 35%;
-  height: 50%;
+  height: 40%;
   z-index: 10000;
 }
 </style>

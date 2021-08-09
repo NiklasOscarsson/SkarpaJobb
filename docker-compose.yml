@@ -1,6 +1,7 @@
 services:
 
     adminer:
+        container_name: adminer_skarp
         image: adminer
         restart: always
         ports:
@@ -8,12 +9,12 @@ services:
 
     db:
         image: postgres
-        restart: always
+        restart: on-failure
+        container_name: postgres_skarp
         environment:
             POSTGRES_USER: bob
-            POSTGRES_PASSWORD: bob
-            POSTGRES_DB: jobs
-            POSTGRES_HOST_AUTH_METHOD: trust
-
-    
-    
+            POSTGRES_PASSWORD: boob
+            POSTGRES_DB: skarpa_jobb
+            POSTGRES_HOST_AUTH_METHOD: password
+        ports: 
+            - 5432:5432

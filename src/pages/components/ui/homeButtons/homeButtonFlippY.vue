@@ -9,15 +9,16 @@
         </div>
       </div>
       <div class="back">
-        <router-view class="frame"></router-view>
+        <page class="frame"></page>
       </div>
     </div>
-
   </div>
 </template>
 
 <script>
+import page from '../../../student.vue'
 export default {
+  components:{page},
   props: {
     src: {
       type: String,
@@ -39,7 +40,7 @@ export default {
       type: String,
       required: true,
     },
-    href: {
+    hreff: {
       type: String,
       required: true,
     },
@@ -52,15 +53,16 @@ export default {
       link: "",
       top:0,
       left:0,
+      buttonSizeY: this.buttonSize,
+      buttonSizeX: this.buttonSize,
     };
   },
-  mounted() {
-    if (this.httpSrc) {
-      this.img = this.httpSrc;
-    }
-    this.link = this.href;
-    this.top = this.$refs.button.getBoundingClientRect().top
-    this.check()
+  methods: {
+    check(){
+      setTimeout(()=>{
+        this.left = this.$refs.button.getBoundingClientRect().left
+      }, 1);
+    },
   },
   computed: {
     cssVars() {
@@ -68,20 +70,21 @@ export default {
         "--bg-src": `url(${this.img})`,
         "--textSize": this.textSize,
         "--size": `${this.buttonSize}px`,
-        // "--moveOverlay": this.buttonSize * -1 + "px",
         "--moveText": this.buttonSize * -1 + "px",
         "--moveLinkTop": this.top * -1 + "px",
         "--moveLinkLeft": this.left * -1 + "px",
       };
     },
   },
-  methods: {
-    check(){
-      setTimeout(()=>{
-        this.left = this.$refs.button.getBoundingClientRect().left
-        console.log(this.left);
-      }, 1);
-    },
+  mounted() {
+    if (this.httpSrc) {
+      this.img = this.httpSrc;
+    }
+    this.link = this.hreff;
+    this.top = this.$refs.button.getBoundingClientRect().top;
+    this.buttonSizeY = this.buttonSize;
+    this.buttonSizeX = this.buttonSize;
+    this.check()
   },
 };
 </script>
@@ -98,7 +101,6 @@ export default {
   z-index: -1;
   opacity: 0.6;
   border-radius: 50%;
-  /* transform: translateY(var(--moveOverlay)); */
 } 
 #text {
   border-radius: 50%;
@@ -123,12 +125,6 @@ export default {
 #button:active .back, #button:active .front{
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
 }
-.frame{
-  position: absolute;
-  top:var(--moveLinkTop);
-  left:var(--moveLinkLeft);
-}
-
 .outer {
   border-radius: 50%;
   background-color: transparent;
@@ -149,8 +145,8 @@ export default {
   color: black;
 }
 .back {
-  background-color: #2980b9;
-  color: white;
+/*   background-color: #2980b9;
+  color: white; */
   transform: rotateY(180deg);
   overflow: hidden;
 }
@@ -167,5 +163,11 @@ export default {
   backface-visibility: hidden;
   box-shadow: -2px 5px 10px rgba(0, 0, 0, 0.5);
   transition: box-shadow .2s;
+}
+.frame {
+  position: absolute;
+  pointer-events: none;
+  top: var(--moveLinkTop);
+  left: var(--moveLinkLeft);
 }
 </style>

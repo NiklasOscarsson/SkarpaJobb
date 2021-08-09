@@ -13,11 +13,12 @@ const store = new Vuex.Store({
       företag: 1,
 
       user:{
-        name:String,
-        role:String,
-        active:Boolean,
-        groups:String,
-        rating:Number
+        first_name:String,
+        last_name:String,
+        img: String,
+        user_role:String,
+        rating:Number,
+        bio: String
       },
       loggedIn: false,
     }
